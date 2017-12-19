@@ -1,12 +1,7 @@
-package main
-
-import "log"
-import "math/rand"
+package algorithms
 
 func merge(left, right []int) []int {
 	out := make([]int, 0, len(left)+len(right))
-
-	log.Printf("merging: %v | %v", left, right)
 
 	for len(left) > 0 || len(right) > 0 {
 		if len(left) == 0 {
@@ -28,30 +23,17 @@ func merge(left, right []int) []int {
 	return out
 }
 
-func sort(input []int) []int {
+func Merge(input []int) []int {
 	length := len(input)
 
 	if length <= 1 {
-		log.Printf("terminal: %v", input)
 		return input
 	}
 
 	mid := length / 2
-	log.Printf("splits: %v | %v", input[:mid], input[mid:])
 
-	left := sort(input[:mid])
-	right := sort(input[mid:])
+	left := Merge(input[:mid])
+	right := Merge(input[mid:])
 
 	return merge(left, right)
-}
-
-func main() {
-	input := make([]int, 20)
-
-	for i := 0; i < len(input); i++ {
-		input[i] = rand.Int() % 20
-	}
-
-	log.Printf("input: %v", input)
-	log.Printf("sorted: %v", sort(input))
 }
