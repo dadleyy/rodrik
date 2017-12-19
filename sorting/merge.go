@@ -6,6 +6,8 @@ import "math/rand"
 func merge(left, right []int) []int {
 	out := make([]int, 0, len(left)+len(right))
 
+	log.Printf("merging: %v | %v", left, right)
+
 	for len(left) > 0 || len(right) > 0 {
 		if len(left) == 0 {
 			return append(out, right...)
@@ -30,6 +32,7 @@ func sort(input []int) []int {
 	length := len(input)
 
 	if length <= 1 {
+		log.Printf("terminal: %v", input)
 		return input
 	}
 
